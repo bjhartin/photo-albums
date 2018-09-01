@@ -13,7 +13,7 @@ lazy val root = project
     inThisBuild(
       Seq(
         scalaVersion := "2.12.6",
-        scalafmtOnCompile := true))
+        scalafmtOnCompile := trueg))
   )
   .aggregate(
     `photo-albums`
