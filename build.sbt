@@ -1,9 +1,15 @@
+lazy val refinedV = "0.9.2"
+lazy val catsV = "1.3.0"
+
 lazy val `photo-albums` =
   project
   .in(file("photo-albums"))
   .settings(
     name := "photo-albums",
-    libraryDependencies ++= Seq()
+    libraryDependencies ++= Seq(
+        "eu.timepit"    %% "refined"        % refinedV,
+        "org.typelevel" %% "cats-core"      % catsV
+    )
   )
 
 lazy val root = project
