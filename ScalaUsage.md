@@ -30,3 +30,36 @@ This file explains the usage of scala idioms, libraries and FP techniques which 
     ```scala
         val result = Either[String, CreditCardNo] = refineV(input)
     ```
+
+## [http4s](https://github.com/http4s/http4s)
+
+  Http4s is a Scala Http interface which strives to be both minimal and
+    purely functional.
+
+## [cats](https://github.com/typelevel/cats)
+
+  Cats is a typelevel.org project akin to Scalaz.  This is a big topic, but
+    for this project I've used it because Http4s requires it and because it
+    gives me access to useful FP concepts not present in Scala's libs.
+
+## [scalacheck](https://github.com/rickynils/scalacheck)
+
+  Scalacheck provides _property-based testing_, in which we avoid writing
+    test data in favor of allowing Scalacheck's `Arbitrary`/`Generator` classes
+    to generate hundreds or thousands of permutations of values and checking
+    that certain conditions hold for all known values.
+
+  This often uncovers errors we'd miss by manually creating test values.
+
+  I find it useful in testing codecs.
+
+  It's also nice to avoid writing boilerplate test data creation methods which
+    can get burdensome, out of sync or imply too much.
+
+  It has, or can derive, generators for most common types.  If needed, one can
+  add custom `Arbitrary`/`Generator` instances.
+
+## [circe](https://github.com/circe/circe)
+
+  Circe is a Scala Json library which can derive Json encoders/decoders for
+    common types.
