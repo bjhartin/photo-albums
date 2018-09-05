@@ -7,7 +7,7 @@ import org.http4s.client.Client
 trait PhotosClient[F[_]] {
   import Models._
 
-  def lookupPhotos(albumId: AlbumId): F[PhotoAlbum]
+  def lookupPhotos(albumId: AlbumId): F[PhotoDetails]
 }
 
 object PhotosClient {
@@ -16,9 +16,9 @@ object PhotosClient {
       import Models._
       import HttpCodec._
 
-      override def lookupPhotos(albumId: Models.AlbumId): F[Models.PhotoAlbum] =
+      override def lookupPhotos(albumId: Models.AlbumId): F[Models.PhotoDetails] =
         for {
-          photoAlbum <- client.expect[PhotoAlbum](
+          photoAlbum <- client.expect[PhotoDetails](
             s"https://jsonplaceholder.typicode.com/photos?albumId=${albumId.value}")
         } yield photoAlbum
     }

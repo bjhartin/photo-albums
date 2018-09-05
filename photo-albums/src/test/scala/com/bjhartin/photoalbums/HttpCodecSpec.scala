@@ -14,17 +14,21 @@ object HttpCodecSpec extends Properties("HttpCodec") {
   import HttpCodec._
   import Models._
 
-  property("Can decode a PhotoAlbum") = forAll { p: PhotoAlbum =>
+  property("Can decode a PhotoAlbum") = forAll { p: PhotoDetails =>
     p.asJson == expectedJson(p)
   }
 
-  property("Can encode a PhotoAlbum") = forAll { p: PhotoAlbum =>
-    expectedJson(p).as[PhotoAlbum].map(_ == p).getOrElse(false)
+  property("Can encode a PhotoAlbum") = forAll { p: PhotoDetails =>
+    expectedJson(p).as[PhotoDetails].map(_ == p).getOrElse(false)
   }
 
-  private def expectedJson(p: PhotoAlbum): Json = {
-    Json.obj {
-      "albumId" -> Json.fromInt(p.albumId.value.value)
-    }
+  private def expectedJson(p: PhotoDetails): Json = {
+    Json.obj(
+      "albumId" -> Json.fromInt(p.albumId.value.value),
+      "id" -> Json.fromInt(p.id.value.value),
+      "title" -> Json.fromString(p.title),
+      "url" -> Json.fromString(p.url),
+      "thumbnailUrl" -> Json.fromString(p.thumbnailUrl)
+    )
   }
 }

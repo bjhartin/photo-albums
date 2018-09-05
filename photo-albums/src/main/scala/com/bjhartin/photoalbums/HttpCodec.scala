@@ -28,8 +28,16 @@ object HttpCodec extends CirceInstances {
       .map(_ => "Error")
   }
 
-  implicit val photoAlbumEncoder = deriveEncoder[PhotoAlbum]
-  implicit val photoAlbumDecoder = deriveDecoder[PhotoAlbum]
+  implicit val photoIdEncoder = Encoder.encodeInt.contramap[PhotoId](_.value.value)
+  implicit val photoIdDecoder = Decoder.decodeInt.emap { int =>
+    (for {
+      positiveInt <- refineV[Positive](int)
+    } yield PhotoId(positiveInt)).left
+      .map(_ => "Error")
+  }
+
+  implicit val photoAlbumEncoder = deriveEncoder[PhotoDetails]
+  implicit val photoAlbumDecoder = deriveDecoder[PhotoDetails]
 
   implicit def entityDecoder[F[_]: Sync, A](implicit decoder: Decoder[A]): EntityDecoder[F, A] = jsonOf[F, A]
 }

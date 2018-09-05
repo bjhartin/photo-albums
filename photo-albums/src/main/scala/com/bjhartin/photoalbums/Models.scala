@@ -10,7 +10,9 @@ object Models {
   type PositiveInt = Int Refined Positive
 
   final case class AlbumId(value: PositiveInt)
-  final case class PhotoAlbum(albumId: AlbumId)
+  final case class PhotoId(value: PositiveInt)
+  // Todo: Separate types.
+  final case class PhotoDetails(albumId: AlbumId, id: PhotoId, title: String, url: String, thumbnailUrl: String)
 
   object Args {
     type HasOneElement = Size[Equal[W.`1`.T]]
