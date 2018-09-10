@@ -8,13 +8,6 @@ On this branch, I'm aiming for a level of Scala usage which seems appropriate gi
 
 I've also commented the code to explain some choices.  Normally I might not write as many comments as I'd prefer to use types (first) and names (second) to clarify.
 
-### Either
-
-At this point, I'm using Either to represent failures.  That will probably change to Task.}
-
-### Specs2
-
-I'm using Specs2 for testing because it should seem pretty familiar.  I would lean on ScalaCheck (property-based testing) more heavily if allowed, although I am relatively new to that.  In a 'Java-ish Scala' environment, the main advantage might be the avoidance of writing test data management code.
 
 ### Http4s
 
@@ -32,6 +25,10 @@ I've used Circe, which is a dependency of Http4s, for decoding Json.
 
 I've chosen to use its 'auto derivation' which means it can decode JSON to a case class as long as all its fields have decoders or are themselves case classes.  If this were seen as too magic, I would use Circe's `.parse` method
 to get a `Json` object and map it manually (hopefully not!).
+
+### Specs2
+
+I'm using Specs2 for testing because it should seem pretty familiar.  I would lean on ScalaCheck (property-based testing) more heavily if allowed, although I am relatively new to that.  In a 'Java-ish Scala' environment, the main advantage might be the avoidance of writing test data management code.
 
 ### Implicits
 
