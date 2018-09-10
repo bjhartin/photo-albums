@@ -25,8 +25,7 @@ If I wanted to process things in parallel I would turn a `List[Task[A]]` into a 
 
 I've used Circe, which is a dependency of Http4s, for decoding Json.
 
-I've chosen to use its 'auto derivation' which means it can decode JSON to a case class as long as all its fields have decoders or are themselves case classes.  If this were seen as too magic, I would use Circe's `.parse` method
-to get a `Json` object and map it manually (hopefully not!).
+I've chosen to use its 'semi-automatic derivation' which means it can derive JSON decoders/encoders for a case class as long as all its fields have implicit decoders or are themselves case classes.  If this were seen as too magic, I would use Circe's `.parse` method to get a `Json` object and map it manually (hopefully not!).
 
 ### Specs2
 
