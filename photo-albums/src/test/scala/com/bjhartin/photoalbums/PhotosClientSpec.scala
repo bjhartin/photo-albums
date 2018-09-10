@@ -11,12 +11,12 @@ import scalaz.concurrent.Task
 object PhotosClientSpec extends Specification with TaskMatchers {
   "PhotosClient" should {
     "Report a non-200 as a failure" in new context {
-      val task = PhotosClient.getPhotos(Config.photosUri, AlbumId("1"), clientWhich(Response(Status.NotFound)))
+      val task = PhotosClient.getPhotos(Config.photosUri, AlbumId(1), clientWhich(Response(Status.NotFound)))
       task must failWith[UnexpectedStatus]
     }
 
     "Report a malformed response body as a failure" in new context {
-      val task = PhotosClient.getPhotos(Config.photosUri, AlbumId("1"), clientWhich(Response(Status.Ok).withEmptyBody))
+      val task = PhotosClient.getPhotos(Config.photosUri, AlbumId(1), clientWhich(Response(Status.Ok).withEmptyBody))
       task must failWith[MalformedMessageBodyFailure]
     }
 
@@ -24,7 +24,7 @@ object PhotosClientSpec extends Specification with TaskMatchers {
       // Returns a task because, technically, the body could fail to encode.
       // (not possible here since encoding a String to String)
       val validResponse = Response(Status.Ok).withBody[String](validBody).unsafePerformSync
-      val task = PhotosClient.getPhotos(Config.photosUri, AlbumId("1"), clientWhich(validResponse))
+      val task = PhotosClient.getPhotos(Config.photosUri, AlbumId(1), clientWhich(validResponse))
 
       task.unsafePerformSync // must returnOk
     }
