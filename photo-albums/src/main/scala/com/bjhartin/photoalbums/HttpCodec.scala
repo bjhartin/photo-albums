@@ -9,6 +9,7 @@ import org.http4s.circe.CirceInstances
 object HttpCodec extends CirceInstances {
   override implicit def jsonDecoder: EntityDecoder[Json] = CirceInstances.defaultJsonDecoder
   override protected def defaultPrinter: Printer = Printer.noSpaces
+  lazy val prettyPrinter: Printer = Printer.spaces2
 
   /*
     Circe can derive decoders for any Case class for which
@@ -20,7 +21,9 @@ object HttpCodec extends CirceInstances {
     but it may be 'too much magic' for some.
    */
   implicit val albumIdDecoder = deriveDecoder[AlbumId]
+  implicit val albumIdEncoder = deriveEncoder[AlbumId]
   implicit val photoDecoder = deriveDecoder[Photo]
+  implicit val photoEncoder = deriveEncoder[Photo]
   implicit val photosDecoder = Decoder[List[Photo]]
 
   lazy val photosEntityDecoder = jsonOf[List[Photo]]
