@@ -1,6 +1,6 @@
 import sbt.Keys.libraryDependencies
 
-val http4sV = "0.18.16"
+val http4sV = "0.16.6a"
 val specs2V = "4.2.0"
 
 lazy val `photo-albums` =
