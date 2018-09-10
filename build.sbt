@@ -10,7 +10,8 @@ lazy val `photo-albums` =
     name := "photo-albums",
     libraryDependencies ++= Seq(
       "org.http4s"            %% "http4s-blaze-client"      % http4sV,
-      "org.specs2"            %% "specs2-core"              % specs2V % Test
+      "org.specs2"            %% "specs2-core"              % specs2V % Test,
+      "org.specs2"            %% "specs2-scalaz"            % specs2V % Test
     )
   )
 
