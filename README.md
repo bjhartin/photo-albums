@@ -19,6 +19,8 @@ This choice pushes a couple of other dependencies back to older versions but I'm
 
 I've used Task, which I've seen in your code, but I've used it a bit more; in particular whenever I know something can fail.  I use for-comprehension as well, as I think it's a good thing to introduce when we start to talk about handling failures and wanting to 'fall out' of a stack of things which can fail.
 
+If I wanted to process things in parallel I would turn a `List[Task[A]]` into a parallelized `Task[List[A]]` with `gatherUnordered`.
+
 ### Circe
 
 I've used Circe, which is a dependency of Http4s, for decoding Json.
