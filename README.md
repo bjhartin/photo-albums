@@ -2,6 +2,10 @@
 
 This simple project retrieves the details of photo albums from `https://jsonplaceholder.typicode.com/photos` and prints their details to the console.
 
+## Build and Execution
+
+Execute `sbt ";project photo-albums;run ALBUM_ID"` from the project directory.
+
 ## Scala usage
 
 On this branch, I'm aiming for a level of Scala usage which seems appropriate given what we've discussed.  I'll detail any interesting idiom/library choices here and explain why I've used them.
@@ -11,7 +15,7 @@ I've also commented the code to explain some choices.  Normally I might not writ
 
 ### Http4s
 
-I'm using Http4s for its Http client.  On this branch I'm using v0.16 because i uses Scalaz and I think that's what will be familiar.  I'd use a newer Cats-based version if I had the choice.
+I'm using Http4s for its Http client.  On this branch I'm using v0.16 because it uses Scalaz and I think that's what will be familiar.  I'd use a newer Cats-based version if I had the choice.
 
 This choice pushes a couple of other dependencies back to older versions but I'm fine with that since it's a demo.
 

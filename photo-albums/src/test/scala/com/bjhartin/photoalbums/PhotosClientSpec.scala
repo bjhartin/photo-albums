@@ -26,7 +26,9 @@ object PhotosClientSpec extends Specification with TaskMatchers {
       val validResponse = Response(Status.Ok).withBody[String](validBody).unsafePerformSync
       val task = PhotosClient.getPhotos(Config.photosUri, AlbumId(1), clientWhich(validResponse))
 
-      task.unsafePerformSync // must returnOk
+      // Note: The task would fail if we received an unexpected HTTP status
+      // or the decoder could not decode the response.
+      task must returnOk
     }
   }
 

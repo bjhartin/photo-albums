@@ -22,7 +22,7 @@ lazy val `photo-albums` =
 lazy val root = project
   .in(file("."))
   .settings(
-    name := "photo-albums",
+    name := "photo-albums-root",
     inThisBuild(
       Seq(
         scalaVersion := "2.12.6",
